@@ -1,27 +1,27 @@
-from flask import Flask
+from bottle import Bottle, run
 import os
 from time import sleep
 
-app = Flask(__name__)
+app = Bottle(__name__)
 
 
-@app.route('/', defaults={'name' : 'World'})
+@app.route('/')
 @app.route('/<name>')
-def hello_world(name):
+def hello_world(name='World'):
     return 'Hello {}!\n'.format(name)
 
 
-@app.route('/end/', defaults={'name': 'Earth'})
+@app.route('/end/')
 @app.route('/end/<name>')
-def goodbye_earth(name):
+def goodbye_earth(name='Earth'):
     return 'Goodbye {}!\n'.format(name)
 
 
-@app.route('/wait/', defaults={'ms': 10})
-@app.route('/wait/<int:ms>')
-def wait(ms):
+@app.route('/wait/')
+@app.route('/wait/<ms:int>')
+def wait(ms=10):
     sleep(ms / 1000.0)
     return 'Waited {ms:d} milliseconds!\n'.format(ms=ms)
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8801)))
+    run(app, host='0.0.0.0', port=int(os.environ.get('PORT', 8800)))

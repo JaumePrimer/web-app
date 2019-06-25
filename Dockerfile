@@ -9,7 +9,5 @@ COPY . .
 # Install production dependencies
 RUN pip install -r ./requirements.txt
 
-# Run the web service.
-# The number of threads should equal the number of workers in the case
-# of multiple CPU cores.
+# Run the web service through python.
 CMD ["python", "app.py"]
