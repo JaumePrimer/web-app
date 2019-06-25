@@ -4,7 +4,6 @@ from time import sleep
 
 app = Bottle(__name__)
 
-
 @app.route('/')
 @app.route('/<name>')
 def hello_world(name='World'):
@@ -24,4 +23,5 @@ def wait(ms=10):
     return 'Waited {ms:d} milliseconds!\n'.format(ms=ms)
 
 if __name__ == "__main__":
-    run(app, host='0.0.0.0', port=int(os.environ.get('PORT', 8800)))
+    run(app, server='meinheld', host='0.0.0.0',
+        port=int(os.environ.get('PORT', 8800)))

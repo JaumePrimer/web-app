@@ -10,4 +10,4 @@ COPY . .
 RUN pip install -r ./requirements.txt
 
 # Run the web service through python.
-CMD ["python", "app.py"]
+CMD gunicorn --workers=2 --worker-class="egg:meinheld#gunicorn_worker" gunicorn_test:app
