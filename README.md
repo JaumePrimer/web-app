@@ -71,4 +71,4 @@ We test the performance of our application in Google Cloud Run.
   one worker will be reading or writing from the socket while 
   the other worker is processing a request.
  
- 
+ We note that Cloud Run uses one vCPU per instance.

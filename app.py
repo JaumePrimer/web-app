@@ -21,7 +21,3 @@ def goodbye_earth(name='Earth'):
 def wait(ms=10):
     sleep(ms / 1000.0)
     return 'Waited {ms:d} milliseconds!\n'.format(ms=ms)
-
-if __name__ == "__main__":
-    run(app, server='meinheld', host='0.0.0.0',
-        port=int(os.environ.get('PORT', 8800)))
