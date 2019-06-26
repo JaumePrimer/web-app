@@ -48,6 +48,9 @@ We test the performance of our application in Google Cloud Run.
     2. sleep test, 10 workers: high number of requests 
      (500-800/s), low latency (20ms), good container usage 
      (20s/s), good memory scaling.
+    3. sleep test, 50 workers: low-medium number of requests 
+     (200/s), unreliable latency (20-800ms), average container usage 
+     (6s/s), average memory scaling.
     
  ### Summary
  Solutions that do not allow for multi-threading or multiple
@@ -59,4 +62,13 @@ We test the performance of our application in Google Cloud Run.
  
  In terms of resource efficiency, running a Meinheld server
  through Bottle appears to treat the same number of requests
- using fewer resources (memory and container).
+ using fewer resources (memory and container). However, one
+ must be careful not to add too many workers. The Gunicorn
+ project makes the following recommendation:
+ > Generally we recommend `(2 x $num_cores) + 1` as the number
+  of workers to start off with. While not overly scientific, 
+  the formula is based on the assumption that for a given core,
+  one worker will be reading or writing from the socket while 
+  the other worker is processing a request.
+ 
+ 
